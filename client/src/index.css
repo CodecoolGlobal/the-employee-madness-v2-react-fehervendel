@@ -24,6 +24,10 @@ button {
   background-color: white;
 }
 
+button.active {
+  background:rgb(76, 117, 219)
+}
+
 button:hover {
   border-color: rgb(99, 151, 254);
 }

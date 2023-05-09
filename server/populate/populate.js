@@ -8,6 +8,7 @@ const levels = require("./levels.json");
 const positions = require("./positions.json");
 const EmployeeModel = require("../db/employee.model");
 
+
 const mongoUrl = process.env.MONGO_URL;
 
 if (!mongoUrl) {
@@ -17,6 +18,7 @@ if (!mongoUrl) {
 
 const pick = (from) => from[Math.floor(Math.random() * (from.length - 0))];
 
+
 const populateEmployees = async () => {
   await EmployeeModel.deleteMany({});
 
@@ -24,6 +26,8 @@ const populateEmployees = async () => {
     name,
     level: pick(levels),
     position: pick(positions),
+    favBrand: null,
+    equipment: [],
   }));
 
   await EmployeeModel.create(...employees);

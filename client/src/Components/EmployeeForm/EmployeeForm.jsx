@@ -1,8 +1,9 @@
-const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+const EmployeeForm = ({ onSave, disabled, employee, onCancel, selectedEquipment, setSelectedEquipment, equipments, brands, selectedBrand, setSelectedBrand }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
+    console.log(entries);
 
     const employee = entries.reduce((acc, entry) => {
       const [k, v] = entry;
@@ -44,6 +45,24 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           name="position"
           id="position"
         />
+      </div>
+
+      <div className="control">
+         <label>Equipments:</label>
+         <select name="equipment" value={selectedEquipment} onChange={(e) => setSelectedEquipment(e.target.value)}>
+         {equipments && equipments.map((equipment) => 
+         <option key={equipment._id} value={equipment._id}>{equipment.name}</option>
+         )}
+         </select>
+      </div>
+
+      <div className="control">
+         <label>Favourite brand:</label>
+         <select name="favBrand" value={selectedBrand._id} onChange={(e) => setSelectedBrand(e.target.value)}>
+         {brands && brands.map((brand) => 
+         <option key={brand._id} value={brand._id}>{brand.name}</option>
+         )}
+         </select>
       </div>
 
       <div className="buttons">
